@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: postgres
+  password: nuttertools
+
+development:
+  <<: *default
+  database: evote_development
+
+test:
+  <<: *default
+  database: opear_web_api_test
+
+production:
+  <<: *default
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  host:     <%= ENV['DATABASE_HOST'] %>

@@ -1,0 +1,23 @@
+<%= form_tag create_station_polling_stations_path, class:"ui modal small", remote: true do %>
+  <i class="close icon"></i>
+  <div class="header">
+    Creando mesas de sufragio
+  </div>
+  <div class="content">
+    <div class="ui form">
+      <h4 class="ui dividing header">Ingrese información relativa a las mesas:</h4>
+      <p>Actualmente hay <b><%= @voters_count %></b> votantes</p>
+      <div class="field">
+        <label>¿Cuántos votantes por mesa desea?</label>
+        <%= text_field_tag :tables_number %>
+      </div>
+      <div class="field">
+        <label>Ingrese iniciales para crear los nombres</label>
+        <%= text_field_tag :initials %>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <%= submit_tag "Crear", class:"ui green button" %>
+  </div>
+<% end %>

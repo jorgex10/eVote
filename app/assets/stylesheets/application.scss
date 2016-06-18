@@ -1,0 +1,19 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+@import "semantic-ui";
+
+.button-nav-style{
+	padding-right: 40px !important;
+	padding-left: 40px !important;
+}
+
+.nav-padding{
+	padding-top: 5px;
+}
+
+.content-style{
+	padding: 20px 40px 20px 40px !important;
+}

@@ -1,0 +1,34 @@
+<h1>Miembros de mesa</h1>
+<% if @members.blank? %>
+	<% if @polling_stations_count == 0 %>
+		<p class="be-red">No podemos generar miembros de mesa si no hay mesas de sufragio registradas, por favor genere las mesas para continuar.</p>
+		<%= link_to "Generar miembros", "#", class:"ui green basic button disabled" %>
+	<% else %>
+		<p>Ningún miembro de mesa ha sido generado Click para generar los miembros de mesa acorde con la cantidad de mesas de sufragio.</p>
+		<%= link_to "Generar miembros", generate_members_path, class:"ui green basic button", data: {disable_with: "Generando ..."}, remote: true %>
+	<% end %>
+<% else %>
+	<p>Miembros elegidos aleatoriamente</p>
+	<table class="ui teal table">
+	  <thead>
+	    <tr>
+	    	<th>Código</th>
+		    <th>Dni</th>
+		    <th>Nombres</th>
+		    <th>Apellidos</th>
+		    <th>Mesa de Votación</th>
+		  </tr>
+		</thead>
+		<tbody>
+			<% @members.each do |member| %>
+		    <tr>
+		      <td><%= member.code %></td>
+		      <td><%= member.dni %></td>
+		      <td><%= member.first_name %></td>
+		      <td><%= member.last_name %></td>
+		      <td><%= member.polling_station.name %></td>
+		    </tr>
+			<% end %>
+	  </tbody>
+	</table>
+<% end %>

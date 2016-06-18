@@ -1,0 +1,42 @@
+<h1>Votantes</h1>
+	<p>Click para importar votantes desde un archivo tipo CSV.</p>
+	<%= form_tag import_voters_path, multipart: true do %>
+		<%= file_field_tag :file, class:"ui pink basic button" %><br><br>
+		<%= submit_tag "Importar votantes", class:"ui green basic button", data: {disable_with: "Importando ..." } %>
+	<% end %>
+	<br>
+<% unless @voters.blank? %>
+	<p>Votantes registrados.</p>
+	<table class="ui teal table">
+	  <thead>
+	    <tr>
+	    	<th>Código</th>
+		    <th>Dni</th>
+		    <th>Nombres</th>
+		    <th>Apellidos</th>
+		    <th>Estado</th>
+		  </tr>
+		</thead>
+		<tbody>
+			<% @voters.each do |voter| %>
+		    <tr>
+		      <td><%= voter.code %></td>
+		      <td><%= voter.dni %></td>
+		      <td><%= voter.first_name %></td>
+		      <td><%= voter.last_name %></td>
+		      <td>
+		      	<% if voter.debtor? %>
+		      		<div class="ui small red label">
+							  No puede votar
+							</div>
+		      	<% else %>
+		      		<div class="ui small green label">
+							  Listo para votar
+							</div>
+		      	<% end %>
+		      </td>
+		    </tr>
+			<% end %>
+	  </tbody>
+	</table>
+<% end %>

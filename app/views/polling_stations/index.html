@@ -1,0 +1,43 @@
+<h1>Mesas de sufragio</h1>
+<% if @polling_stations.blank? %>
+	<% if @voters_count == 0 %>
+		<p class="be-red">No podemos generar mesas de sufragio porque aún no hay votantes registrados.</p>
+		<%= link_to "Generar mesas de sufragio", "#", class:"ui green basic button disabled" %>
+	<% else %>
+		<p>Click en "Generar mesas" para crear mesas de sufragio acorde con la candidad de votantes.</p>
+		<%= link_to "Generar mesas", "#", id:"create_button", class:"ui green basic button", data: {disable_with: "Generando ..."} %>
+	<% end %>
+<% else %>
+	<p>Mesas de sufragio generadas</p>
+	<table class="ui teal table">
+		<thead>
+			<tr>
+				<th>Código</th>
+				<th>Nombre</th>
+				<th>Miembro de mesa asignado</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @polling_stations.each do |ps| %>
+				<tr>
+					<td><%= ps.code %></td>
+					<td><%= ps.name %></td>
+					<td>
+						<% if ps.member.nil? %>
+							Ningún miembro de mesa ha sido asignado
+						<% else %>
+							<%= ps.member.full_name %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% end %>
+<%= render 'modal_create' %>
+
+<script type="text/javascript">
+	$( "#create_button" ).click(function() {
+	  $('.ui.modal').modal('show');
+	});
+</script>

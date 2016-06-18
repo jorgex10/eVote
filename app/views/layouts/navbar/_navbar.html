@@ -1,0 +1,14 @@
+<div class="ui small menu nav-padding">
+  <%= link_to "<h3>Home</h3>".html_safe, users_path, class:"button-nav-style item #{'active' if @controller == 'users'}" %>
+  <%= link_to "<h3>Votantes</h3>".html_safe, voters_path, class:"button-nav-style item #{'active' if @controller == 'voters'}" %>
+	<%= link_to "<h3>Mesas de Votación</h3>".html_safe, polling_stations_path, class:"button-nav-style item #{'active' if @controller == 'polling_stations'}" %>
+  <%= link_to "<h3>Miembros de mesa</h3>".html_safe, members_path, class:"button-nav-style item #{'active' if @controller == 'members'}" %>
+  <div class="right menu">
+    <div class="item">
+    	<%= current_user.full_name %>
+    </div>
+    <div class="item">
+      <%= link_to "Salir", destroy_user_session_path, method: :delete, class:"ui red basic button" %>
+    </div>
+  </div>
+</div>
