@@ -5,7 +5,10 @@
   <%= link_to "<h3>Miembros de mesa</h3>".html_safe, members_path, class:"button-nav-style item #{'active' if @controller == 'members'}" %>
   <div class="right menu">
     <div class="item">
-    	<%= current_user.full_name %>
+      <div class="nav-info">
+        <%= School.first.name %><br>
+        <b><%= current_user.full_name %></b>
+      </div>
     </div>
     <div class="item">
       <%= link_to "Salir", destroy_user_session_path, method: :delete, class:"ui red basic button" %>
