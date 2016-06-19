@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
   validates :first_name, :last_name, :dni, :code, presence: true
 
+  before_create :set_school
+
   def full_name
   	"#{first_name} #{last_name}"
   end
@@ -20,6 +22,10 @@ class User < ActiveRecord::Base
 
   def password_required?
     true unless self.type == "Member" or self.type == "Voter"
+  end
+
+  def set_school
+    self.school_id = School.first.id
   end
 
 end
