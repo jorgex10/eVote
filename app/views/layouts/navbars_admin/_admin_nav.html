@@ -1,0 +1,16 @@
+<div class="ui small menu nav-padding">
+  <div class="right menu">
+    <div class="item">
+      <%= link_to "<b>Miembros de mesa</b>".html_safe, admin_members_path %>
+    </div>
+    <div class="item">
+      <div class="nav-info">
+        <%= School.first.name %><br>
+        <b><%= current_user.full_name %></b>
+      </div>
+    </div>
+    <div class="item">
+      <%= link_to "Salir", destroy_user_session_path, method: :delete, class:"ui red basic button" %>
+    </div>
+  </div>
+</div>

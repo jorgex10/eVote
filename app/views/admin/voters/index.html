@@ -1,6 +1,6 @@
 <h1>Votantes</h1>
 	<p>Click para importar votantes desde un archivo tipo CSV.</p>
-	<%= form_tag import_voters_path, multipart: true do %>
+	<%= form_tag import_admin_voters_path, multipart: true do %>
 		<%= file_field_tag :file, class:"ui pink basic button" %><br><br>
 		<%= submit_tag "Importar votantes", class:"ui green basic button", data: {disable_with: "Importando ..." } %>
 	<% end %>

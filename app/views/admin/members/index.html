@@ -5,7 +5,7 @@
 		<%= link_to "Generar miembros", "#", class:"ui green basic button disabled" %>
 	<% else %>
 		<p>Ningún miembro de mesa ha sido generado Click para generar los miembros de mesa acorde con la cantidad de mesas de sufragio.</p>
-		<%= link_to "Generar miembros", generate_members_path, class:"ui green basic button", data: {disable_with: "Generando ..."}, remote: true %>
+		<%= link_to "Generar miembros", generate_admin_members_path, class:"ui green basic button", data: {disable_with: "Generando ..."}, remote: true %>
 	<% end %>
 <% else %>
 	<p>Miembros elegidos aleatoriamente</p>

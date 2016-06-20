@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Admin::UsersController < AdminController
   def index
   	@members = Member.all
   	@voters = Voter.all

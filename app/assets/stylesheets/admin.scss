@@ -1,0 +1,50 @@
+/*
+ *= require_tree './admin'
+ *= require_self
+ */
+
+@import "semantic-ui";
+
+.button-nav-style{
+	padding-right: 40px !important;
+	padding-left: 40px !important;
+}
+
+.ui.nav-padding{
+	margin-left: 18%;
+	padding-top: 5px;
+	margin-right: 1%;
+}
+
+.content-style{
+	padding: 10px 20px 32px 0px !important
+}
+
+.nav-info{
+	text-align: center;
+}
+
+.vertical-menu{
+  list-style-type: none;
+  margin-top: -14px;
+  padding: 0;
+  width: 17%;
+  background-color: #ADACAD;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+#vm-styles{
+	margin-top: 45%;
+	margin-left: -30px;
+}
+
+#body-styles{
+	height: 0%;
+}
+
+#container-principal{
+	margin-left: 18%;
+	margin-right: -0.5%;
+}

@@ -1,4 +1,4 @@
-class MembersController < ApplicationController
+class Admin::MembersController < AdminController
   def index
   	@members = Member.all
   	@polling_stations_count = PollingStation.count

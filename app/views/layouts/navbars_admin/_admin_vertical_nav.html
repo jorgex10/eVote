@@ -1,0 +1,26 @@
+<div class="vertical-menu">
+  <ul>
+    <div id="vm-styles" class="ui vertical menu">
+      <%= link_to admin_users_path, class:"item #{'active' if @controller == 'admin/users'}" do %>
+        <h4 class="ui header">HOME</h4>
+        <p>Página inicial de eVote</p>
+      <% end  %>
+      <%= link_to admin_voters_path, class:"item #{'active' if @controller == 'admin/voters'}" do %>
+        <h4 class="ui header">Votantes</h4>
+        <p>Gestión de votantes del sistema</p>
+      <% end  %>
+      <%= link_to admin_polling_stations_path, class:"item #{'active' if @controller == 'admin/polling_stations'}" do %>
+        <h4 class="ui header">Mesas de Votación</h4>
+        <p>Gestión de mesas de votación en el sistema</p>
+      <% end  %>
+      <%= link_to admin_members_path, class:"item #{'active' if @controller == 'admin/members'}" do %>
+        <h4 class="ui header">Miembros de Mesa</h4>
+        <p>Genere y gestione miembros de mesa</p>
+      <% end  %>
+      <a class="item">
+        <h4 class="ui header">En proceso :)</h4>
+        <p>:c</p>
+      </a>
+    </div>
+  </ul>
+</div>

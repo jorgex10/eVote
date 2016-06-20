@@ -1,4 +1,4 @@
-class PollingStationsController < ApplicationController
+class Admin::PollingStationsController < AdminController
   def index
   	@polling_stations = PollingStation.all
     @voters_count = Voter.count

@@ -24,14 +24,17 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.datetime :confirmation_sent_at
       t.string   :unconfirmed_email
 
-      t.string   :first_name,   null: false
-      t.string   :last_name,    null: false
+      t.string   :first_name,            null: false
+      t.string   :last_name,             null: false
       t.string   :phone
-      t.string   :dni,          null: false
-      t.string   :code,         null: false
+      t.string   :dni,                   null: false
+      t.string   :code,                  null: false
       t.datetime :dob
-      t.integer  :school_id,    null: false
-      t.string   :type,         null: false
+      t.integer  :school_id,             null: false
+      t.string   :type,                  null: false
+      t.integer  :polling_process_id
+      t.integer  :polling_station_id
+      t.decimal  :pending_debt,          null: false, default: 0
 
       t.timestamps null: false
     end

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  <title>EVote</title>
+	  <%= stylesheet_link_tag    'set_process', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'set_process', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+
+	<body id="body-styles">
+		<%= render "layouts/navbars_processes/process_nav" %>
+		<div id="container-process" class="ui grid">
+		  <div class="column content-style">
+		    <div class="ui segment">
+					<%= yield %>
+		    </div>
+		  </div>
+		</div>
+	</body>
+
+</html>
