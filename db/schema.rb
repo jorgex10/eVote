@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610213609) do
+ActiveRecord::Schema.define(version: 20160608040800) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "email",                  :default=>"", :null=>false, :index=>{:name=>"index_admins_on_email", :unique=>true}
+    t.string   "encrypted_password",     :default=>"", :null=>false
+    t.string   "reset_password_token",   :index=>{:name=>"index_admins_on_reset_password_token", :unique=>true}
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default=>0, :null=>false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "first_name",             :null=>false
+    t.string   "last_name",              :null=>false
+    t.string   "phone"
+    t.string   "dni",                    :null=>false
+    t.string   "code",                   :null=>false
+  end
 
   create_table "faculties", force: :cascade do |t|
     t.string   "name",       :null=>false
@@ -33,6 +55,8 @@ ActiveRecord::Schema.define(version: 20160610213609) do
     t.string   "name",        :null=>false
     t.text     "description"
     t.integer  "school_id",   :null=>false, :index=>{:name=>"fk__polling_processes_school_id"}, :foreign_key=>{:references=>"schools", :name=>"fk_polling_processes_school_id", :on_update=>:no_action, :on_delete=>:no_action}
+    t.integer  "admin_id",    :null=>false, :index=>{:name=>"fk__polling_processes_admin_id"}, :foreign_key=>{:references=>"admins", :name=>"fk_polling_processes_admin_id", :on_update=>:no_action, :on_delete=>:no_action}
+    t.integer  "status",      :default=>0, :null=>false
     t.datetime "created_at",  :null=>false
     t.datetime "updated_at",  :null=>false
   end
@@ -69,7 +93,6 @@ ActiveRecord::Schema.define(version: 20160610213609) do
     t.datetime "dob"
     t.integer  "school_id",              :null=>false, :index=>{:name=>"fk__users_school_id"}, :foreign_key=>{:references=>"schools", :name=>"fk_users_school_id", :on_update=>:no_action, :on_delete=>:no_action}
     t.string   "type",                   :null=>false
-    t.integer  "polling_process_id",     :index=>{:name=>"fk__users_polling_process_id"}, :foreign_key=>{:references=>"polling_processes", :name=>"fk_users_polling_process_id", :on_update=>:no_action, :on_delete=>:no_action}
     t.integer  "polling_station_id",     :index=>{:name=>"fk__users_polling_station_id"}, :foreign_key=>{:references=>"polling_stations", :name=>"fk_users_polling_station_id", :on_update=>:no_action, :on_delete=>:no_action}
     t.decimal  "pending_debt",           :default=>0.0, :null=>false
     t.datetime "created_at",             :null=>false

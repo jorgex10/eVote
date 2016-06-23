@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+  devise_for :admins
   devise_for :users
 
   root "polling_processes#index"
 
-  resources :polling_processes
+  resources :polling_processes do
+    put :set_current_process, on: :collection
+  end
 
   namespace :admin do
     resources :users, only: :index
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
     resources :polling_stations, only: :index do
       post :create_station, on: :collection
     end
+    put :delete_current_process
     root "users#index"
   end
 

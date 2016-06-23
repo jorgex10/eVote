@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   before_create :set_school
 
+  belongs_to :polling_station
+
   def full_name
   	"#{first_name} #{last_name}"
   end

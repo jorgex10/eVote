@@ -1,13 +1,13 @@
 <div class="ui small menu nav-padding">
   <div id="general-info">
-    eVote - Gestor de Procesos Electorales 
+    Gestor de Procesos Electorales 
   </div>
   <div class="right menu">
     <div class="item">
       <%= School.first.name %><br>
     </div>
     <div class="item">
-      <b><%= current_user.full_name %></b>
+      <b><%= current_admin.full_name %></b>
     </div>
     <div class="item">
       <%= link_to "Salir", destroy_user_session_path, method: :delete, class:"ui red basic button" %>

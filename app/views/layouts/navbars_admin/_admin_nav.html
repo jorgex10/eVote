@@ -1,12 +1,15 @@
 <div class="ui small menu nav-padding">
+  <div class="process-name-style">
+    <%= current_process.name %>
+  </div>
   <div class="right menu">
     <div class="item">
-      <%= link_to "<b>Miembros de mesa</b>".html_safe, admin_members_path %>
+      <%= link_to "<b>Ir a Procesos Generales</b>".html_safe, admin_delete_current_process_path, method: :put %>
     </div>
     <div class="item">
       <div class="nav-info">
         <%= School.first.name %><br>
-        <b><%= current_user.full_name %></b>
+        <b><%= current_admin.full_name %></b>
       </div>
     </div>
     <div class="item">
