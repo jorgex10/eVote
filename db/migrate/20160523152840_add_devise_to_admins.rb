@@ -1,9 +1,9 @@
-class DeviseCreateUsers < ActiveRecord::Migration
-  def change
-    create_table :users do |t|
+class AddDeviseToAdmins < ActiveRecord::Migration
+  def self.up
+    create_table :admins do |t|
       ## Database authenticatable
-      t.string :email
-      t.string :encrypted_password
+      t.string :email,              null: false, default: ""
+      t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -19,27 +19,25 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.inet     :current_sign_in_ip
       t.inet     :last_sign_in_ip
 
+      ## Confirmable
       t.string   :confirmation_token
       t.datetime :confirmed_at
       t.datetime :confirmation_sent_at
-      t.string   :unconfirmed_email
+      t.string   :unconfirmed_email # Only if using reconfirmable
 
       t.string   :first_name,            null: false
       t.string   :last_name,             null: false
       t.string   :phone
       t.string   :dni,                   null: false
       t.string   :code,                  null: false
-      t.datetime :dob
-      t.integer  :school_id,             null: false
-      t.string   :type,                  null: false
-      t.integer  :polling_process_id
-      t.integer  :polling_station_id
-      t.decimal  :pending_debt,          null: false, default: 0
 
-      t.timestamps null: false
     end
 
-    add_index :users, :email,                unique: true
-    add_index :users, :reset_password_token, unique: true
+    add_index :admins, :email,                unique: true
+    add_index :admins, :reset_password_token, unique: true
+  end
+
+  def self.down
+    raise ActiveRecord::IrreversibleMigration
   end
 end

@@ -1,2 +1,31 @@
 <h1>Procesos de Sufragio <%= link_to "Nuevo Proceso", new_polling_process_path, class:"ui green basic button margin-create" %></h1>
-<p>Actualmente no hay Procesos registrados</p>
+<% if @processes.blank? %>
+  <p>Actualmente no hay Procesos registrados</p>
+<% else %>
+  <p>Procesos registrados actualmente</p>
+  <br>
+  <div class="ui cards">
+    <% @processes.each do |process| %>
+      <div class="card">
+        <div class="content">
+          <div class="header">
+            <%= process.name %>
+          </div>
+          <div class="meta">
+            Proceso de Sufragio
+          </div>
+          <div class="description">
+            <%= process.description %>
+          </div>
+        </div>
+        <div class="extra content">
+          <div class="ui two buttons">
+            <%= link_to "Ir", { action: "set_current_process", process_id: process.id}, class:"ui basic green button", method: :put %>
+            <div class="ui basic red button">Edit</div>
+          </div>
+        </div>
+      </div>  
+    <% end %>
+  </div>
+<% end %>
+

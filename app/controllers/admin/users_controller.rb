@@ -3,5 +3,4 @@ class Admin::UsersController < AdminController
   	@members = Member.all
   	@voters = Voter.all
   end
-
 end
