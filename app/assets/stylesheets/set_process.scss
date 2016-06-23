@@ -6,8 +6,8 @@
 @import "semantic-ui";
 
 #container-process{
-	margin-left: 1%;
-	margin-right: 1%;
+  margin-left: 18%;
+  margin-right: -0.5%;
 }
 
 .ui.margin-create{
@@ -27,4 +27,12 @@
 #create-form{
   max-width: 70%;
   margin: 0 auto;
+}
+
+.evote-logo{
+  line-height: 6em;
+  font-size: 4em;
+  color: white;
+  font-weight: bold;
+  margin-left: 16%;
 }

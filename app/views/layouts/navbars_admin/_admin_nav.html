@@ -1,5 +1,7 @@
 <div class="ui small menu nav-padding">
-  <%= current_process.name %>
+  <div class="process-name-style">
+    <%= current_process.name %>
+  </div>
   <div class="right menu">
     <div class="item">
       <%= link_to "<b>Ir a Procesos Generales</b>".html_safe, admin_delete_current_process_path, method: :put %>

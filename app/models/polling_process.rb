@@ -4,4 +4,6 @@ class PollingProcess < ActiveRecord::Base
   belongs_to :admin
   belongs_to :school
 
+  has_many :polling_stations
+
 end
