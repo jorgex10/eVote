@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160608040800) do
+ActiveRecord::Schema.define(version: 20160623203059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160608040800) do
     t.decimal  "pending_debt",           :default=>0.0, :null=>false
     t.datetime "created_at",             :null=>false
     t.datetime "updated_at",             :null=>false
+    t.integer  "polling_process_id",     :null=>false, :index=>{:name=>"fk__users_polling_process_id"}, :foreign_key=>{:references=>"polling_processes", :name=>"fk_users_polling_process_id", :on_update=>:no_action, :on_delete=>:no_action}
   end
 
 end

@@ -1,12 +1,13 @@
 class User < ActiveRecord::Base
   
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   validates :first_name, :last_name, :dni, :code, presence: true
 
-  before_create :set_school
+  before_create :set_attributes
 
   belongs_to :polling_station
+  belongs_to :polling_process
 
   def full_name
   	"#{first_name} #{last_name}"
@@ -26,8 +27,9 @@ class User < ActiveRecord::Base
     true unless self.type == "Member" or self.type == "Voter"
   end
 
-  def set_school
+  def set_attributes
     self.school_id = School.first.id
+    self.polling_process = PollingProcess.where(status: 1).first
   end
 
 end

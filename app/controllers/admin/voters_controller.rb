@@ -1,6 +1,6 @@
 class Admin::VotersController < AdminController
   def index
-  	@voters = Voter.all.sort_by{|x| x.code}
+  	@voters = Voter.mine.sort_by{|x| x.code}
   end
 
   def import

@@ -5,5 +5,6 @@ class PollingProcess < ActiveRecord::Base
   belongs_to :school
 
   has_many :polling_stations
+  has_many :users
 
 end
