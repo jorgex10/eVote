@@ -1,4 +1,5 @@
 class PollingProcessesController < ApplicationController
+
 	layout 'set_process'
 
 	def index
