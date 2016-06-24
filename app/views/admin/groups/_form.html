@@ -1,0 +1,13 @@
+<%= form_for [:admin, group], html: { id:"create-form-group", class:"ui form" }, remote: true do |f| %>
+  <div class="field">
+    <label>Nombre del Partido</label>
+    <%= f.text_field :name, placeholder: "Ingrese nombre" %>
+  </div>
+  <div class="field">
+    <label>Descripción</label>
+    <%= f.text_area :description, placeholder: "Ingrese una descripción para este nuevo Partido", rows: "2" %>
+  </div>
+  <br>
+  <%= f.submit " #{status} Partido", class:"ui green basic button" %>
+  <%= link_to "Cancelar", admin_groups_path, class:"ui red basic button" %>
+<% end %>

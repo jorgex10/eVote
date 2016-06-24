@@ -3,11 +3,14 @@
     <div id="vm-styles" class="ui vertical menu">
       <%= link_to admin_users_path, class:"item #{'active' if @controller == 'admin/users'}" do %>
         <h4 class="ui header">HOME</h4>
-        <p>Página inicial de eVote</p>
       <% end  %>
       <%= link_to admin_voters_path, class:"item #{'active' if @controller == 'admin/voters'}" do %>
         <h4 class="ui header">Votantes</h4>
         <p>Gestión de votantes del sistema</p>
+      <% end  %>
+      <%= link_to admin_groups_path, class:"item #{'active' if @controller == 'admin/groups'}" do %>
+        <h4 class="ui header">Partidos de Votación</h4>
+        <p>Gestión de los partidos de votación del sistema</p>
       <% end  %>
       <%= link_to admin_polling_stations_path, class:"item #{'active' if @controller == 'admin/polling_stations'}" do %>
         <h4 class="ui header">Mesas de Votación</h4>

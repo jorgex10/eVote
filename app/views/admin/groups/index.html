@@ -1,0 +1,27 @@
+<h1>Grupos de votación <%= link_to "Crear Nuevo Grupo", new_admin_group_path, class:"ui green basic button margin-create" %> </h1>
+<% if @groups.blank? %>
+  <p>Ningún grupo de votación ha sido registrado</p>
+<% else %>
+  <table class="ui teal table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Settings</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @groups.each do |group| %>
+        <tr>
+          <td>
+            <%= group.name %>
+          </td>
+          <td><%= link_to "<i class='edit icon'></i>".html_safe, edit_admin_group_path(group), class:"ui basic button" %></td>
+          <td></td>
+          <td></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

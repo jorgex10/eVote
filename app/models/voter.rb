@@ -1,5 +1,7 @@
 class Voter < User
-
+  
+  belongs_to :group
+  
   scope :mine, -> { where(polling_process_id: PollingProcess.where(status: 1).first.id) }
 
 	def self.import file

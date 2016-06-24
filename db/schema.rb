@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160623203059) do
+ActiveRecord::Schema.define(version: 20160624195748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 20160623203059) do
     t.datetime "updated_at",  :null=>false
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string   "name",               :null=>false
+    t.text     "description"
+    t.integer  "polling_process_id", :null=>false, :index=>{:name=>"fk__groups_polling_process_id"}, :foreign_key=>{:references=>"polling_processes", :name=>"fk_groups_polling_process_id", :on_update=>:no_action, :on_delete=>:no_action}
+    t.datetime "created_at",         :null=>false
+    t.datetime "updated_at",         :null=>false
+  end
+
   create_table "polling_stations", force: :cascade do |t|
     t.string   "code",               :null=>false
     t.string   "name",               :null=>false
@@ -98,6 +106,7 @@ ActiveRecord::Schema.define(version: 20160623203059) do
     t.datetime "created_at",             :null=>false
     t.datetime "updated_at",             :null=>false
     t.integer  "polling_process_id",     :null=>false, :index=>{:name=>"fk__users_polling_process_id"}, :foreign_key=>{:references=>"polling_processes", :name=>"fk_users_polling_process_id", :on_update=>:no_action, :on_delete=>:no_action}
+    t.integer  "group_id",               :index=>{:name=>"fk__users_group_id"}, :foreign_key=>{:references=>"groups", :name=>"fk_users_group_id", :on_update=>:no_action, :on_delete=>:no_action}
   end
 
 end
