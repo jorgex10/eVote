@@ -2,8 +2,8 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: rubymobile
-  password: rbpassword
+  username: postgres
+  password: nuttertools
 
 development:
   <<: *default

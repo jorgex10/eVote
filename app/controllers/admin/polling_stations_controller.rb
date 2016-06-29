@@ -1,7 +1,7 @@
 class Admin::PollingStationsController < AdminController
   def index
   	@polling_stations = PollingStation.mine
-    @voters_count = Voter.mine.count
+    @voters_count = Voter.mine.no_members.count
   end
 
   def create_station
@@ -14,7 +14,7 @@ class Admin::PollingStationsController < AdminController
       if params[:tables_number].empty?
         render js: "alert('Ingrese la cantidad de mesas a crear.')"
       else
-        voters = Voter.count
+        voters = Voter.mine.no_members.count
         if params[:tables_number].to_i > voters
           render js: "alert('Ingrese un número de mesas menor a la cantidad de votantes.')"
         else

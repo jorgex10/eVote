@@ -17,9 +17,9 @@
           <td>
             <%= group.name %>
           </td>
+          <td><%= link_to "<i class='users icon'></i>".html_safe, admin_group_path(group), class:"ui basic button" %></td>
           <td><%= link_to "<i class='edit icon'></i>".html_safe, edit_admin_group_path(group), class:"ui basic button" %></td>
-          <td></td>
-          <td></td>
+          <td><%= link_to "<i class='remove icon'></i>".html_safe, admin_group_path(group), method: :delete, remote: true, class:"ui basic red button", data: {confirm: "¿Desea eliminar al partido de votación #{group.name}?"} %></td>
         </tr>
       <% end %>
     </tbody>

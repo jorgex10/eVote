@@ -20,8 +20,16 @@ Rails.application.routes.draw do
     resources :polling_stations, only: :index do
       post :create_station, on: :collection
     end
-    resources :groups
+    resources :groups do
+      member do
+        post :add_member
+        delete :destroy_member
+      end
+    end
     resources :reports, only: :index
+    resources :datasets, only: [] do
+      get :voters, on: :collection
+    end
     put :delete_current_process
     root "users#index"
   end

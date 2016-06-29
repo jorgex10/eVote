@@ -1,0 +1,43 @@
+<h1><%= @group.name %></h1>
+<p><%= @group.description %></p>
+<div class="ui styled fluid accordion">
+  <div class="title">
+    <i class="dropdown icon"></i>
+    Agregar miembros al partido
+  </div>
+  <div class="content">
+		<%= form_for(@group, url: add_member_admin_group_path(@group), method: :post, remote: true, html: { class:"ui form" }) do |f| %>
+      <%= f.hidden_field :voters, id:"voters-typeahead", class:"form-control" %>
+      <input type="text" id="search_typeahead" class="typeahead" placeholder="Search a voter">
+      <%= submit_tag 'Add Member', id:"add-member-button", class:"ui basic green button" %>
+	  <% end %>
+  </div>
+</div>
+<br>
+<p><b>Miembros registrados:</b></p>
+<div id="partial-members">
+	<%= render 'members', group: @group %>
+</div>
+<br>
+<%= link_to "Volver", admin_groups_path, class:"ui basic red button" %>
+
+<script type="text/javascript">
+	$('.ui.accordion').accordion();
+	var votersSource = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+      url: '/admin/datasets/voters?query=%QUERY',
+      wildcard: '%QUERY'
+    }
+  });
+  $('#search_typeahead').typeahead(null, {
+    limit: 1000,
+    name: 'voters',
+    display: 'full_name',
+    source: votersSource
+  });
+  $('#search_typeahead').bind('typeahead:selected', function(obj, datum, name) {
+    $("#voters-typeahead").val(datum.id)
+  });
+</script>

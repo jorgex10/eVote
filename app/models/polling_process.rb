@@ -4,8 +4,8 @@ class PollingProcess < ActiveRecord::Base
   belongs_to :admin
   belongs_to :school
 
-  has_many :polling_stations
-  has_many :users
-  has_many :groups
+  has_many :polling_stations, dependent: :destroy
+  has_many :users, dependent: :destroy
+  has_many :groups, dependent: :destroy
 
 end

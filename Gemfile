@@ -27,6 +27,7 @@ gem 'schema_plus', '~> 2.0', '>= 2.0.1'
 gem 'pg', '~> 0.18.4'
 gem 'awesome_print'
 gem 'semantic-ui-sass', '~> 2.1', '>= 2.1.8.0'
+gem 'twitter-typeahead-rails', '~> 0.11.1'
 gem 'roo', '~> 2.4'
 
 group :development, :test do

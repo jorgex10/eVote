@@ -1,6 +1,6 @@
 class Admin::GroupsController < AdminController
 
-  before_action :set_group, only: [:edit, :update]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :add_member, :destroy_member]
 
   def index
     @groups = Group.mine
@@ -20,6 +20,21 @@ class Admin::GroupsController < AdminController
     end
   end
 
+  def add_member
+    voter = Voter.find group_params[:voters]
+    voter.group = @group
+    @status = voter.errors.full_messages.join('\n') unless voter.save
+  end
+
+  def destroy_member
+    member = Voter.find params[:member]
+    member.group = nil
+    @status = member.errors.full_messages.join('\n') unless member.save
+  end
+
+  def show
+  end
+
   def edit
   end
 
@@ -28,10 +43,14 @@ class Admin::GroupsController < AdminController
     @status = @group.errors.full_messages.join('\n') unless @group.errors.empty?
   end
 
+  def destroy
+    @status = @group.errors.full_messages.join('\n') unless @group.destroy
+  end
+
   private
 
   def group_params
-    params.require(:group).permit(:name, :description)
+    params.require(:group).permit(:name, :description, :voters)
   end
 
   def set_group

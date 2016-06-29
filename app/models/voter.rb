@@ -3,6 +3,7 @@ class Voter < User
   belongs_to :group
   
   scope :mine, -> { where(polling_process_id: PollingProcess.where(status: 1).first.id) }
+  scope :no_members, -> { where(group: nil) }
 
 	def self.import file
 		CSV.foreach(file.path, headers: true) do |row|
@@ -11,5 +12,13 @@ class Voter < User
 			voter.save! if voter.valid?
 		end
 	end
+
+	def self.search_name query
+    if query
+      where('first_name || last_name ILIKE ?', "%#{query}%")
+    else
+      all
+    end
+  end
 
 end

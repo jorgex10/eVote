@@ -1,0 +1,17 @@
+<% if group.voters.blank? %>
+	<p>No existen miembros del partido registrados</p>
+<% else %>
+	<div class="ui middle aligned divided list">
+		<% group.voters.each do |member| %>
+		  <div class="item">
+		    <div class="right floated content">
+		    	<%= link_to "<i class='remove user icon'></i>".html_safe, destroy_member_admin_group_path(member: member), class:"ui basic red button", data: { confirm: "¿Desea remover a #{member.full_name} como miembro del grupo?" }, method: :delete, remote: true %>
+		    </div>
+		  	<i class="checkmark box icon"></i>
+		    <div class="content">
+		      <%= member.full_name %>
+		    </div>
+		  </div>
+		<% end %>
+	</div>
+<% end %>

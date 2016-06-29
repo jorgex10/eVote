@@ -1,6 +1,7 @@
 class PollingProcessesController < ApplicationController
 
 	layout 'set_process'
+	before_action :set_process, only: [:edit, :update]
 
 	def index
 		@processes = PollingProcess.all.sort_by{|x| x.id}
@@ -21,6 +22,13 @@ class PollingProcessesController < ApplicationController
 		end
 	end
 
+	def edit
+	end
+
+	def update
+		@status = @process.errors.full_messages.join('\n') unless @process.update(process_params)
+	end
+
 	def set_current_process
 		process = PollingProcess.find params[:process_id]
 		process.update(status: 1)
@@ -31,6 +39,10 @@ class PollingProcessesController < ApplicationController
 
 	def process_params
 		params.require(:polling_process).permit(:name, :description)
+	end
+
+	def set_process
+		@process = PollingProcess.find params[:id]
 	end
 
 end
