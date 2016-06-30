@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :voters, only: :index do
       post :import, on: :collection
     end
-    resources :polling_stations, only: :index do
+    resources :polling_stations, only: [:index, :show] do
       post :create_station, on: :collection
     end
     resources :groups do

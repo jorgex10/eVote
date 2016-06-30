@@ -1,0 +1,23 @@
+<h1><%= @polling_station.name %></h1>
+<table class="ui table asd">
+	<thead></thead>
+	<tbody>
+		<tr>
+			<td><b>Código:</b></td>
+			<td><%= @polling_station.code %></td>
+		</tr>
+		<tr>
+			<td><b>Miembro de mesa:</b></td>
+			<td>
+				<% if @polling_station.member.blank? %>
+					Ningún miembro de mesa ha sido asignado
+				<% else %>
+					<%= @polling_station.member.full_name %>
+				<% end %>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<h3>Votantes asignados <%= link_to "Registrar votantes aleatoriamente", "#", class:"ui basic green button margin-create" %></h3>
+<p>No hay votantes asignados a esta mesa de votación</p>
+<%= link_to "Volver", admin_polling_stations_path, class:"ui basic red button" %>

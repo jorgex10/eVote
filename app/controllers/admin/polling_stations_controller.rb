@@ -1,4 +1,7 @@
 class Admin::PollingStationsController < AdminController
+  
+  before_action :set_polling_station, only: :show
+
   def index
   	@polling_stations = PollingStation.mine
     @voters_count = Voter.mine.no_members.count
@@ -32,7 +35,14 @@ class Admin::PollingStationsController < AdminController
     end
   end
 
+  def show
+  end
+
   private
+
+  def set_polling_station
+    @polling_station = PollingStation.find params[:id]
+  end
 
   def station_params
   	params.require(:polling_station).permit(:code, :name)
