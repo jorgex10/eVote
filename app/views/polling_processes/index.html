@@ -20,7 +20,7 @@
         </div>
         <div class="extra content">
           <div class="ui two buttons">
-            <%= link_to "Ir", { action: "set_current_process", process_id: process.id}, class:"ui basic green button", method: :put %>
+            <%= link_to "Ir", set_current_process_polling_processes_path(process_id: process.id), class:"ui basic green button", method: :put %>
             <%= link_to "Editar", edit_polling_process_path(process), class:"ui basic red button" %>
           </div>
         </div>
