@@ -11,11 +11,6 @@ class PollingProcessesController < ApplicationController
 		@process = PollingProcess.new
 	end
 
-	def show
-		redirect_to admin_users_path
-		p "SHOW"
-	end
-
 	def create
 		@process = PollingProcess.new(process_params)
 		@process.school = School.first
