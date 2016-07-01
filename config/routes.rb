@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root "polling_processes#index"
 
-  resources :polling_processes do
+  resources :polling_processes, except: :show do
     put :set_current_process, on: :collection
   end
 
