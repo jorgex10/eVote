@@ -8,8 +8,8 @@ class Admin::MembersController < AdminController
   	begin
 	  	PollingStation.mine.count.times do |index|
 	  		ps = PollingStation.offset(index).first
-		  	offset = rand(Voter.mine.count)
-		  	rand_record = Voter.mine.offset(offset).first
+		  	offset = rand(Voter.mine.no_members.count)
+		  	rand_record = Voter.mine.no_members.offset(offset).first
 		  	rand_record.update(type: "Member", polling_station_id: ps.id)
 	  	end
   	rescue Exception => e

@@ -1,10 +1,10 @@
 class Admin::PollingStationsController < AdminController
   
-  before_action :set_polling_station, only: :show
+  before_action :set_polling_station, only: [:show, :asign_random_voters]
 
   def index
   	@polling_stations = PollingStation.mine
-    @voters_count = Voter.mine.no_members.count
+    @voters_count = Voter.mine.count
   end
 
   def create_station
@@ -17,7 +17,7 @@ class Admin::PollingStationsController < AdminController
       if params[:tables_number].empty?
         render js: "alert('Ingrese la cantidad de mesas a crear.')"
       else
-        voters = Voter.mine.no_members.count
+        voters = Voter.mine.count
         if params[:tables_number].to_i > voters
           render js: "alert('Ingrese un número de mesas menor a la cantidad de votantes.')"
         else
@@ -36,6 +36,15 @@ class Admin::PollingStationsController < AdminController
   end
 
   def show
+  end
+
+  def asign_random_voters
+    voters_per_place = Voter.mine.count / PollingStation.mine.count
+    if @polling_station.users.count <= voters_per_place
+      voters_per_place.times do |index|
+        Voter.mine.without_ps.first.update(polling_station_id: @polling_station.id)
+      end
+    end
   end
 
   private

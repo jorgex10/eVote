@@ -1,0 +1,14 @@
+<% if polling_station.users.blank? %>
+  <p>No hay votantes asignados a esta mesa de votación</p>
+<% else %>
+  <div class="ui middle aligned divided list qwe">
+    <% polling_station.users.each do |voter| %>
+      <div class="item">
+        <i class="checkmark box icon"></i>
+        <div class="content">
+          <%= voter.full_name %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

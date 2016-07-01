@@ -4,6 +4,7 @@ class Voter < User
   
   scope :mine, -> { where(polling_process_id: PollingProcess.where(status: 1).first.id) }
   scope :no_members, -> { where(group: nil) }
+  scope :without_ps, -> { where(polling_station_id: nil) }
 
 	def self.import file
 		CSV.foreach(file.path, headers: true) do |row|

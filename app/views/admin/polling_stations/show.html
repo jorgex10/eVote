@@ -1,5 +1,5 @@
 <h1><%= @polling_station.name %></h1>
-<table class="ui table asd">
+<table class="ui table table-ps-style">
 	<thead></thead>
 	<tbody>
 		<tr>
@@ -18,6 +18,9 @@
 		</tr>
 	</tbody>
 </table>
-<h3>Votantes asignados <%= link_to "Registrar votantes aleatoriamente", "#", class:"ui basic green button margin-create" %></h3>
-<p>No hay votantes asignados a esta mesa de votación</p>
+<h3>Votantes asignados <%= link_to "Registrar votantes aleatoriamente", asign_random_voters_admin_polling_station_path, class:"ui basic green button margin-create", remote: true %></h3>
+<div id="partial-voters">
+	<%= render 'voters', polling_station: @polling_station %>
+</div>
+<br>
 <%= link_to "Volver", admin_polling_stations_path, class:"ui basic red button" %>

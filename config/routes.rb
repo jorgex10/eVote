@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
     resources :polling_stations, only: [:index, :show] do
       post :create_station, on: :collection
+      get :asign_random_voters, on: :member
     end
     resources :groups do
       member do
