@@ -17,6 +17,11 @@ class User < ActiveRecord::Base
     self.pending_debt > 50
   end
 
+  def set_attributes
+    self.school_id = School.first.id
+    self.polling_process = PollingProcess.where(status: 1).first
+  end
+
   protected
 
   def email_required?
@@ -25,11 +30,6 @@ class User < ActiveRecord::Base
 
   def password_required?
     true unless self.type == "Member" or self.type == "Voter"
-  end
-
-  def set_attributes
-    self.school_id = School.first.id
-    self.polling_process = PollingProcess.where(status: 1).first
   end
 
 end
