@@ -27,7 +27,7 @@
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
-      url: '/admin/datasets/voters?query=%QUERY',
+      url: "<%= ENV['HOST']%>" + '/admin/datasets/voters?query=%QUERY',
       wildcard: '%QUERY'
     }
   });
