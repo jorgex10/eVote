@@ -11,6 +11,10 @@ class PollingProcessesController < ApplicationController
 		@process = PollingProcess.new
 	end
 
+	def show
+		p "SHOW"
+	end
+
 	def create
 		@process = PollingProcess.new(process_params)
 		@process.school = School.first
