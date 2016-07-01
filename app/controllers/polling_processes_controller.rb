@@ -12,6 +12,7 @@ class PollingProcessesController < ApplicationController
 	end
 
 	def show
+		redirect_to admin_users_path
 		p "SHOW"
 	end
 
